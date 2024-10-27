@@ -1,9 +1,8 @@
 -----------------------------------------------------------
 -- General Neovim settings and configuration
 -----------------------------------------------------------
-
 local opt = vim.opt                          -- オプションを設定 (グローバル/バッファ/ウィンドウ範囲)
-vim.cmd("highlight LineNr guifg=#8a70ac")    -- 行番号の色を変更
+vim.cmd("highlight LineNr guifg=#8A70AC")    -- 行番号の色を変更
 
 -----------------------------------------------------------
 -- General
@@ -14,8 +13,8 @@ opt.mouse = ""                   -- マウスサポートを有効化
 -----------------------------------------------------------
 -- File
 -----------------------------------------------------------
-opt.encoding = "utf-8"        -- ファイルのエンコーディング
-opt.fileencoding = "utf-8"    -- ファイルのエンコーディング
+opt.encoding = "UTF-8"        -- ファイルのエンコーディング
+opt.fileencoding = "UTF-8"    -- ファイルのエンコーディング
 opt.swapfile = false          -- スワップファイルを使用しない
 opt.hidden = true             -- バックグラウンドバッファを有効にする
 
@@ -41,12 +40,12 @@ opt.background = "dark"          -- ダークカラーを使用する
 opt.termguicolors = true         -- 24ビットカラーを使用
 opt.number = true                -- 行番号を表示
 opt.cursorline = true            -- カーソル行をハイライト
-opt.guicursor = { 'a:ver25' }    -- GUIカーソルスタイルを設定
+opt.guicursor = { "a:block" }    -- GUIカーソルスタイルを設定
 opt.showtabline = 1              -- タブラインを表示する設定
 opt.showmatch = true             -- 対応する括弧をハイライト表示
 opt.signcolumn = "yes"           -- サインカラムを表示
 opt.wrap = true                  -- テキストの自動折り返しを有効に
-opt.visualbell = true            -- ビープ音の代わりに画面をフラッシュ
+opt.visualbell = false           -- ビープ音の代わりに画面をフラッシュ
 opt.winblend = 0                 -- ウィンドウの不透明度
 opt.pumblend = 0                 -- ポップアップメニューの不透明度
 
@@ -58,3 +57,12 @@ opt.autoindent = true     -- 自動インデントを有効にする
 opt.smartindent = true    -- インデントをスマートに調整する
 opt.shiftwidth = 4        -- シフト幅を4に設定する
 opt.tabstop = 4           -- タブ幅を4に設定する
+opt.list = true           -- リストを有効化
+-- 半角スペース、タブ、改行を可視化
+opt.listchars = { space = "·", tab = "-->", eol = "↵" }
+-- 全角スペースを可視化
+vim.cmd[[
+  hi DoubleByteSpace term=underline ctermbg=blue guibg=darkgray
+  match DoubleByteSpace /　/
+]]
+

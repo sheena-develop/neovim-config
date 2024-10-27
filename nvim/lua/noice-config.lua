@@ -1,4 +1,16 @@
 require("noice").setup({
+    views = {
+        cmdline_popup = {
+            position = {
+                row = 5,
+                col = "50%",
+            },
+            size = {
+                width = 60,
+                height = "auto",
+            },
+        },
+    },
     lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
