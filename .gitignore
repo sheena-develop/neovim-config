@@ -5,5 +5,6 @@ nvim/plugin/
 # 特定のファイルとフォルダを対象外とする
 !.gitignore
 !README.md
+!open-readme.sh
 !nvim/
 
