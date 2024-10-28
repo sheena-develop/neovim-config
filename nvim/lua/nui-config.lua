@@ -33,8 +33,6 @@ Normal mode, O - 上に行を挿入して、Insert modeにする
 
 <コピー&切り取り&ペースト>
 Normal mode, y        - コピー
-Visual mode, Ctrl + c - クリップボードにコピー
-Visual mode, Ctrl + x - クリップボードに切り取り
 Normal mode, dd       - 切り取り
 Normal mode, p        - ペースト
 Insert mode, Ctrl + p - ペースト

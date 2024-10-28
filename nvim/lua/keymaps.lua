@@ -70,18 +70,5 @@ map("n", "<leader>c", ":nohl<CR>")
 
 map("n", "<Leader>nn", ":Neotree toggle<CR>")
 
-vim.keymap.set("v", "<C-c>", function()
-    local selected_text = vim.fn.getreg('"')
-    vim.fn.system("win32yank.exe -i", selected_text)
-    notify_msg("選択範囲をクリップボードにコピーしました。")
-end)
-
-vim.keymap.set("v", "<C-x>", function()
-    local selected_text = vim.fn.getreg('"')
-    vim.fn.system("win32yank.exe -i", selected_text)
-    vim.cmd("normal! x")
-    notify_msg("選択範囲をクリップボードに切り取りました。")
-end)
-
 map("n", "<Leader>f", ":Prettier<CR>")
 
