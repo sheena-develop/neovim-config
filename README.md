@@ -26,6 +26,20 @@
    コンパイルに必要なツールをインストールします:</br>
    `sudo apt install build-essential`
 
+4. Prettierの準備
+   `npm install -g @fsouza/prettierd`
+
+5. win32yank.exeの準備
+   1. win32yankのインストール(https://github.com/equalsraf/win32yank/releases)
+   2. 解凍
+   3. WSLを起動して、フォルダ作成
+   `mkdir ~/bin`
+   4. `\\wsl$\[ディストリビューション名]\home\[ユーザー名]\bin` に解凍したフォルダの中の `win32yank.exe` を移動
+   5. PATHを通す(未設定の場合のみ)
+   `export PATH=$HOME/bin:usr/local/bin:$PATH`
+   6. パーミッションの変更
+   `chmod +x ~/bin/win32yank.exe`
+
 ---
 
 ## 2. フォント設定
