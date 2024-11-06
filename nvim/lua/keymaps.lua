@@ -70,5 +70,3 @@ map("n", "<leader>c", ":nohl<CR>")
 
 map("n", "<Leader>nn", ":Neotree toggle<CR>")
 
-map("n", "<Leader>f", ":Prettier<CR>")
-

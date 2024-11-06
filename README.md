@@ -4,13 +4,113 @@
 
 ## 対象環境
 
-- **OS**: Windows 10/11
+- **OS**: Windows 10/11, Amazon Linux 2023
 - **サブシステム**: WSL2(Ubuntu)
 - **エディタ**: Neovim
 - **ターミナル**: Windows Terminal
-- **フォント**: 0xProto Nerd Font
+- **フォント**: [0xProto Nerd Font](https://github.com/0xType/0xProto)
 
----
+## WSL2(Ubuntu)で、最新のNeovimのインストール
+
+aptでは、古いバージョンがインストールされてしまうため、以下の方法で最新版をインストールする
+
+1. 古いNeovimの削除
+```
+sudo apt remove neovim
+```
+
+2. AppImageからNeovimをインストール
+```
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+```
+
+3. 権限の変更
+```
+chmod u+x nvim.appimage
+```
+
+4. インストール
+```
+./nvim.appimage --appimage-extract
+```
+
+5. 最新バージョンがインストールされていることを確認
+```
+./squashfs-root/AppRun --version
+```
+
+6. 移動
+```
+sudo mv squashfs-root /
+```
+
+7. シンボリックリンクの設定
+```
+sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+```
+
+8. 確認
+```
+which nvim
+```
+
+9. 最新バージョンがインストールされていることを確認（[バージョン一覧](https://github.com/neovim/neovim/releases)）
+```
+nvim --version
+```
+
+## Amazon Linux 2023で、最新のNeovimのインストール
+
+1. Neovimのダウンロード
+```
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+```
+
+2. 削除
+```
+sudo rm -rf /opt/nvim
+```
+
+3. 解凍
+```
+sudo tar -C /opt -xzf nvim-linux64.tar.gz
+```
+
+4. .bashrc_profileに追加（~/.bashrc, ~/.zshrc, ...などでも可）
+```
+export PATH="$PATH:/opt/nvim-linux64/bin"
+```
+
+5. 最新バージョンがインストールされていることを確認（[バージョン一覧](https://github.com/neovim/neovim/releases)）
+```
+nvim --version
+```
+
+## WSL2(Ubuntu)で、win32yankを使ってyankしたテキストをクリップボードに転送
+
+この設定では、win32yankを使用しています。
+不要であれば、設定している部分を削除してください。
+
+1. win32yankのインストール([win32yank](https://github.com/equalsraf/win32yank/releases))
+
+2. 解凍
+
+3. WSLを起動して、フォルダ作成
+```
+mkdir ~/bin
+```
+
+4. `\\wsl$\[ディストリビューション名]\home\[ユーザー名]\bin`に解凍したフォルダの中のwin32yank.exeを移動
+
+5. パーミッションの変更
+```
+chmod +x ~/bin/win32yank.exe
+```
+
+6. PATHを通す（未設定の場合のみ）
+```
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+```
 
 ## 1. Neovimのセットアップコマンド
 
@@ -40,7 +140,12 @@
    6. パーミッションの変更
    `chmod +x ~/bin/win32yank.exe`
 
----
+npm install -g prettier
+sudo apt-get update
+sudo apt-get install luarocks
+sudo apt-get install lua:5.4
+npm install -g neovim
+sudo apt install ripgrep
 
 ## 2. フォント設定
 
@@ -48,8 +153,6 @@ Neovimでアイコンなどを表示するため、Nerdフォントのインス�
 
 - **フォントのダウンロード**:
   [0xProto GitHubページ](https://github.com/0xType/0xProto)
-
----
 
 ## 3. Windows Terminalの設定
 
@@ -72,16 +175,12 @@ Windows Terminalで使用するフォントや透明度をカスタマイズす�
 }
 ```
 
----
-
 ## 4. リポジトリのクローン
 
 Neovimの設定リポジトリをクローンするためのコマンド:</br>
 `git clone [Repository URL] ~/.config`
 
 **注意**: `~/.config`ディレクトリが既に存在し、他の設定が保存されている場合、このコマンドは上書きのリスクがあるため注意してください。
-
----
 
 ## 5. README.mdの表示方法
 
@@ -90,8 +189,6 @@ Chrome拡張機能を利用し、README.mdをブラウザで表示できます�
 - **拡張機能**: [Markdown Viewer](https://chromewebstore.google.com/detail/markdown-viewer/ckkdlimhmcjmikdlpkmbgfkaikojcbjk?hl=ja)
 - **表示コマンド**: Chromeで`README.md`を表示するスクリプトを用意します。
   `sh open-readme.sh`
-
----
 
 ## 6. コミットメッセージの規則
 
@@ -128,8 +225,6 @@ Chrome拡張機能を利用し、README.mdをブラウザで表示できます�
 :construction_worker: ci: (環境構築に関わる追加や修正)
 
     👷 ci: バージョン変更に伴う Dockerfile の修正
-
----
 
 ## 7. プラグイン情報
 
